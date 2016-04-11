@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>War Garage</title>
+    <style>
+      html, body {
+        color: #fff;
+        font-family: "Lucida Console", Monaco, monospace;
+        background-color: #000;
+        background-image: url("bgtile.gif");
+        paddng: 0;
+        margin: 0;
+      }
+      button {
+        color: #fff;
+        text-shadow: 1px 1px #000;
+        background-color: #CC00E3;
+        border-top: 3px solid #CC00E3;
+        border-left: 3px solid #CC00E3;
+        border-bottom: 3px solid #9900E3;
+        border-right: 3px solid #9900E3;
+        border-radius: 5px;
+        padding: 10px;
+      }
+      button:hover {
+        text-shadow: 1px 1px #000, 2px 2px #000, 3px 3px #000;
+        border-top: 3px solid #9900E3;
+        border-left: 3px solid #9900E3;
+        border-bottom: 3px solid #CC00E3;
+        border-right: 3px solid #CC00E3;
+      }
+      .content {
+        background-color: rgba(0,0,0,.7);
+        position: fixed;
+        width: 100%;
+        height: calc(100% - 120px);
+        top: 0;
+        right: 0;
+        z-index: 1;
+      }
+      .innerContent {
+        width: 100%;
+        height: 100%;
+      }
+      .center { /* center along both X and Y */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .goaway {
+        background-image: url("g.gif");
+        width: 100%;
+        height: 100%;
+      }
+      .music {
+        position: fixed;
+        width: 100%;
+        height: 120px;
+        bottom: 0;
+        right: 0;
+      }
+    </style>
+    <script>
+      function goto(where) {
+        if (where == 0) {
+          document.getElementById("screen").innerHTML = "<center><img src=\"banner.png\"><br><img src=\"subhead.png\"><br><button onclick=\"goto(1);\"><b><em>GO GO GO</em></b></button></center>";
+        }
+        else if (where == 1) {
+          document.getElementById("screen").innerHTML = "<div class=\"center\" onclick=\"goto(2);\"><img src=\"text.gif\"></div>";
+        }
+        else if (where == 2) {
+          document.getElementById("screen").innerHTML = "<div class=\"innderContent\" onclick=\"goto(3);\"><canvas id=\"c\"></canvas></div>";
+          matrix();
+        }
+        else {
+          document.getElementById("screen").innerHTML = "<div class=\"goaway\" onclick=\"window.location.href = 'https://ottersquad.github.io/';\"></div>";
+        }
+      }
+    </script>
+    <!-- Matrix canvas code (where == 2) --><script>function matrix(){function draw(){ctx.fillStyle="rgba(0, 0, 0, 0.05)",ctx.fillRect(0,0,c.width,c.height),ctx.fillStyle="#D72AEB",ctx.font=font_size+"px arial";for(var t=0;t<drops.length;t++){var e=chinese[Math.floor(Math.random()*chinese.length)];ctx.fillText(e,t*font_size,drops[t]*font_size),drops[t]*font_size>c.height&&Math.random()>.975&&(drops[t]=0),drops[t]++}}var c=document.getElementById("c"),ctx=c.getContext("2d");c.height=window.innerHeight,c.width=window.innerWidth;var chinese="田由甲申甴电甶男甸甹町画甼甽甾甿畀畁畂畃畄畅畆畇畈畉畊畋界畍畎畏畐畑";chinese=chinese.split("");for(var font_size=10,columns=c.width/font_size,drops=[],x=0;columns>x;x++)drops[x]=1;setInterval(draw,33);}</script>
+  </head>
+  <body onload="goto(0);">
+    <div class="content">
+      <div class="innerContent" id="screen">
+      </div>
+    </div>
+    <div class="music">
+      <iframe width="100%" height="120px" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/210124201&amp;color=CC00E3&amp;auto_play=true&amp;hide_related=true&amp;show_comments=false&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </div>
+  </body>
+</html>
